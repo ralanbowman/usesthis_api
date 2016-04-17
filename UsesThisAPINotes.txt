@@ -1,0 +1,116 @@
+Uses This API Notes
+
+On tracker: Method | Response  | List of response params.. 
+Final checks - does language / tense / structure match for same elements…? 
+
+Use the template to get the API review form fields (set up in Gdocs):
+Base URL, Resources, Query params, methods, etc.. use this to get needed info for each API (where to put code sample blocks..?)
+
+
+
+All methods are GET
+
+URL: https://usesthis.com/api/v1/{resource}
+
+
+Resource: /interviews (returns a basic list of all interviews)
+Response elements:
+interviews | Basic interview information | JSON array 
+  slug | Page ID or resource names | string | Will be the interviewees name in lowercase with a dot between the first and last names 
+  name | Name of interviewee | string
+  url | URL to the full interview | string (verify type for URL)
+  summary | Summary of interview | string
+  date | Date interview was posted | integer | Date in UNIX epoch time format
+  categories | List of categories | JSON array | 
+
+  credits | Photo credit for interview picture | JSON object | Not listed on all interviews
+    name | Name of person for photo credit | string 
+    
+
+
+
+Resource: /interviews/{slug} (returns the complete interview for a slug, including gear)
+Response elements:
+interview | Complete interview information | JSON object 
+  slug | Page ID | string | Will be the interviewees *name* in lowercase with a dot between the first and last names 
+  name | Name of interviewee | string
+  url | URL to the full interview | string (verify type for URL)
+  summary | Summary of interview | string
+  date | Date interview was posted | integer | Date in UNIX epoch time format
+  categories | List of categories | JSON array |
+
+  contents | Full text of the interview | string | Text is in Markdown format
+  gear | List of hardware and software used by the interviewee | JSON object
+    hardware | List of hardware | JSON array 
+      slug | Page ID | string | Hardware *name* in lowercase with a dash between each word 
+       name | Name of hardware | string | The product name
+       description | General description | string | 
+       url | Link to product on vendor's website | string 
+
+
+     software | List of software | JSON array
+        slug | Page ID | string | Software *name* in lowercase with a dash between each word
+        name | Name of software | string | The product name
+        description | General description | string 
+	url | Link to the product on vendor's website | string 
+
+
+Resource: /categories (returns a basic list of all categories)
+Response elements:
+categories | List of all categories | JSON array | The category names are the {slug} resource used to get a list for all interviews for a category 
+
+
+
+Resource: /categories/{slug} (returns a list of all interviews with that category)
+Response elements:
+interviews | List of interviews using a category | JSON array 
+   slug | Page ID | string 
+   name | Name of interviewee | string 
+   url  | URL to the full interview | string 
+   summary | Text that appears just below interviewees name | string 
+   date | Date interview was posted | integer | Date in UNIX epoch time format
+   categories | List of all categories for the interview | JSON array | Category names are listed by {slug}
+
+
+Resource: /hardware (returns a basic list of all hardware - this list will be very large)
+Response elements: 
+gear | List of all hardware mentioned in all interviews | JSON array 
+   slug | Page ID | string 
+   name | Full name for each piece of hardware | string 
+
+Resource: /software (returns a basic list of all software - this list will be very large)
+Response elements: 
+gear | List of all software mentioned in all interviews | JSON array 
+   slug | Page ID | string 
+   name | Full name for each piece of software  | string 
+
+
+Resource: /hardware/{slug}
+Response elements:
+gear | Gear description | JSON object 
+  slug | Page ID | string 
+  name | Full name for the piece of hardware  | string
+  description | Description of the piece of hardware | string 
+  url | Link to the product on the vendor's website | string
+  interviews | List of interviews that mention the hardware | JSON array
+     slug | Page ID | string 
+     name | Full name of the interview | string 
+
+
+Resource: /software/{slug}
+Response elements: 
+gear | Gear description | JSON object 
+  slug | Page ID | string 
+  name | Full name for the piece of software  | string
+  description | Description of the piece of software | string 
+  url | Link to the product on the vendor's website | string
+  interviews | List of interviews that mention the software | JSON array
+     slug | Short name of the interview | string 
+     name | Full name of the interview | string
+
+---
+
+Status and Errors:
+
+200 OK | Success 
+404 Not found | API endpoint not found

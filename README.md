@@ -1,2 +1,5 @@
-# usesthis_api
-Documentation for The Setup API
+# Documentation for the Uses This API
+
+Documentation for the Uses This API, in order to practice API documentation. 
+
+
