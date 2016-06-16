@@ -11,6 +11,7 @@ Description (a description, such as "Retrieves all user names available in custo
 
 `METHOD https://api.example.com/resource/endpoint/{parameter}`
 
+
 ### Sample Request
 
 `curl --get --include 'https://api.example.com/resource/endpoint/parameter`
