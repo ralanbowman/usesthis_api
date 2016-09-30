@@ -1,0 +1,1067 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.17), see www.w3.org">
+
+  <title></title>
+</head>
+
+<body>
+  <h1 id="the-setup-api">The Setup API</h1>
+
+  <p>A simple JSON API to retrieve data from <a href="https://usesthis.com" title="The Setup/Uses This">The Setup/Uses This</a>.</p>
+
+  <p><a href="#">Retrieve a list of all interviews</a><br>
+  <a href="#">Retrieve a specific interview, including gear</a><br>
+  <a href="#">Retrieve a list of all categories</a><br>
+  <a href="#">Retrieve a list of all categories</a><br>
+  <a href="#">Retrieve a list of all interviews in a category</a></p>
+
+  <p><a href="#">Retrieve a list of all gear (hardware or software)</a><br>
+  <a href="#">Retrieve a list of all gear (hardware or software) for a category</a></p>
+
+  <p><a href="#">Retrieve the top 50 hardware or software items listed (can also specify year)</a><br>
+  <a href="#">Retrieve site stats for number of interviews, hardware and software item counts</a></p>
+
+  <p><a href="#">Status Codes and Errors</a></p>
+
+  <h2 id="interviews">Interviews</h2>
+
+  <h2 id="retrieve-a-list-of-all-interviews">Retrieve a list of all interviews</h2>
+
+  <p>Returns a basic list of all interviews currently available.</p>
+
+  <p><strong>Note</strong> - this will return a very long list of items.</p>
+
+  <h3 id="endpoint">Endpoint</h3>
+
+  <p><code>/api/v1/interviews</code></p>
+
+  <h3 id="method-and-url">Method and URL</h3>
+
+  <p><code>GET https://usesthis.com/api/v1/interviews</code></p>
+
+  <h3 id="sample-request">Sample Request</h3>
+
+  <p><code>curl -X GET "https://usesthis.com/api/v1/interviews/"</code></p>
+
+  <h3 id="sample-response">Sample Response</h3>
+  <pre class="sourceCode json">
+<code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">"interviews"</span><span class="fu">:</span> <span class="ot">[</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"nina.freeman"</span><span class="fu">,</span>
+      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Nina Freeman"</span><span class="fu">,</span>
+      <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"http://usesthis.com/interviews/nina.freeman/"</span><span class="fu">,</span>
+      <span class="dt">"summary"</span><span class="fu">:</span> <span class="st">"Level designer (Fullbright), game designer (Cibele)"</span><span class="fu">,</span>
+      <span class="dt">"date"</span><span class="fu">:</span> <span class="dv">1458198000</span><span class="fu">,</span>
+      <span class="dt">"categories"</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="st">"developer"</span><span class="ot">,</span>
+        <span class="st">"designer"</span><span class="ot">,</span>
+        <span class="st">"game"</span><span class="ot">,</span>
+        <span class="st">"mac"</span><span class="ot">,</span>
+        <span class="st">"windows"</span>
+      <span class="ot">]</span>
+    <span class="fu">}</span><span class="ot">,</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"megan.prelinger"</span><span class="fu">,</span>
+      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Megan Prelinger"</span><span class="fu">,</span>
+      <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"http://usesthis.com/interviews/megan.prelinger/"</span><span class="fu">,</span>
+      <span class="dt">"summary"</span><span class="fu">:</span> <span class="st">"Writer, historian, librarian, naturalist"</span><span class="fu">,</span>
+      <span class="dt">"date"</span><span class="fu">:</span> <span class="dv">1458025200</span><span class="fu">,</span>
+      <span class="dt">"categories"</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="st">"historian"</span><span class="ot">,</span>
+        <span class="st">"librarian"</span><span class="ot">,</span>
+        <span class="st">"mac"</span><span class="ot">,</span>
+        <span class="st">"naturalist"</span><span class="ot">,</span>
+        <span class="st">"writer"</span>
+      <span class="ot">]</span><span class="fu">,</span>
+      <span class="dt">"credits"</span><span class="fu">:</span> <span class="fu">{</span>
+        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Rick Prelinger (© 2014)"</span>
+      <span class="fu">}</span>
+    <span class="fu">}</span>
+  <span class="ot">]</span>
+<span class="fu">}</span></code>
+</pre>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Element</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Type</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>interviews</strong></td>
+
+        <td align="left">Basic interview information</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>slug</strong></td>
+
+        <td align="left">Page ID</td>
+
+        <td align="left">string</td>
+
+        <td align="left">In "first.last" name format</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>name</strong></td>
+
+        <td align="left">Full name</td>
+
+        <td align="left">string</td>
+
+        <td align="left">First and last name</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>url</strong></td>
+
+        <td align="left">Link to full interview</td>
+
+        <td align="left">string</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>summary</strong></td>
+
+        <td align="left">Summary of the interview</td>
+
+        <td align="left">string</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>date</strong></td>
+
+        <td align="left">Date interview was posted</td>
+
+        <td align="left">integer</td>
+
+        <td align="left"><strong>date</strong> is in UNIX epoch time</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>categories</strong></td>
+
+        <td align="left">List of categories for the interview</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>credits</strong></td>
+
+        <td align="left">Photo credit for interview picture</td>
+
+        <td align="left">JSON object</td>
+
+        <td align="left">Credit is only listed when provided by subject</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/credits/<strong>name</strong></td>
+
+        <td align="left">Name of photographer</td>
+
+        <td align="left">string</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><br></p>
+
+  <h2 id="retrieve-a-specific-interview-including-gear">Retrieve a specific interview, including gear</h2>
+
+  <p>Return a specific interview for a given <em>slug</em>, including gear (hardware and software used).</p>
+
+  <h3 id="endpoint-1">Endpoint</h3>
+
+  <p><code>/api/v1/interviews/{slug}</code></p>
+
+  <p><strong>Note</strong> - a <strong><em>slug</em></strong> is a short label for an article that is used as part of a URL, usually derived from the title. See <strong>Retrieve a list of all interviews</strong> to get a full list of available slugs.</p>
+
+  <h3 id="method-and-url-1">Method and URL</h3>
+
+  <p><code>GET https://usesthis.com/api/v1/interviews/{slug}</code></p>
+
+  <h3 id="sample-request-1">Sample Request</h3>
+
+  <p><code>curl -X GET "https://usesthis.com/api/v1/interviews/jessamyn.west/"</code></p>
+
+  <h3 id="sample-response-1">Sample Response</h3>
+  <pre class="sourceCode json">
+<code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">"interview"</span><span class="fu">:</span> <span class="fu">{</span>
+        <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"slug.name"</span><span class="fu">,</span>
+        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Slug Name"</span><span class="fu">,</span>
+        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"http://usesthis.com/interviews/slug.name/"</span><span class="fu">,</span>
+        <span class="dt">"summary"</span><span class="fu">:</span> <span class="st">"maker, programmer"</span><span class="fu">,</span>
+        <span class="dt">"date"</span><span class="fu">:</span> <span class="dv">1458025200</span><span class="fu">,</span>
+        <span class="dt">"categories"</span><span class="fu">:</span> <span class="ot">[</span>
+            <span class="st">"maker"</span><span class="ot">,</span>
+            <span class="st">"programmer"</span><span class="ot">,</span>
+            <span class="st">"mac"</span><span class="ot">,</span>
+            <span class="st">"linux"</span><span class="ot">,</span>
+        <span class="ot">]</span><span class="fu">,</span>
+        <span class="dt">"credits"</span><span class="fu">:</span> <span class="fu">{</span>
+            <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Photographer (© 2014)"</span>
+        <span class="fu">},</span>
+        <span class="dt">"contents"</span><span class="fu">:</span> <span class="st">"#### Who are you, and what do you do?</span><span class="ch">\n\n</span><span class="st">[I'm](http://example.com/ </span><span class="ch">\"</span><span class="st">Example's website.</span><span class="ch">\"</span><span class="st">) a maker, and a programmer... (output truncated)"</span><span class="fu">,</span>
+    <span class="dt">"gear"</span><span class="fu">:{</span>
+      <span class="dt">"hardware"</span><span class="fu">:</span><span class="ot">[</span>
+        <span class="fu">{</span>
+          <span class="dt">"slug"</span><span class="fu">:</span><span class="st">"macbook-air"</span><span class="fu">,</span>
+          <span class="dt">"name"</span><span class="fu">:</span><span class="st">"Macbook Air"</span><span class="fu">,</span>
+          <span class="dt">"description"</span><span class="fu">:</span><span class="st">"A very thin laptop."</span><span class="fu">,</span>
+          <span class="dt">"url"</span><span class="fu">:</span><span class="st">"http://www.apple.com/macbook-air/"</span>
+        <span class="fu">}</span><span class="ot">,</span>
+        <span class="fu">{</span>
+          <span class="dt">"slug"</span><span class="fu">:</span><span class="st">"imac"</span><span class="fu">,</span>
+          <span class="dt">"name"</span><span class="fu">:</span><span class="st">"iMac"</span><span class="fu">,</span>
+          <span class="dt">"description"</span><span class="fu">:</span><span class="st">"An all-in-one computer."</span><span class="fu">,</span>
+          <span class="dt">"url"</span><span class="fu">:</span><span class="st">"http://www.apple.com/imac/"</span>
+        <span class="fu">}</span><span class="ot">,</span>
+      <span class="ot">]</span>
+    <span class="fu">}</span>
+  <span class="fu">}</span>
+<span class="fu">}</span></code>
+</pre>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Element</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Type</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>interviews</strong></td>
+
+        <td align="left">Basic interview information</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>slug</strong></td>
+
+        <td align="left">Page ID</td>
+
+        <td align="left">string</td>
+
+        <td align="left">In "first.last" name format</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>name</strong></td>
+
+        <td align="left">Full name</td>
+
+        <td align="left">string</td>
+
+        <td align="left">First and last name</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>url</strong></td>
+
+        <td align="left">Link to full interview</td>
+
+        <td align="left">string</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>summary</strong></td>
+
+        <td align="left">Summary of the interview</td>
+
+        <td align="left">string</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>date</strong></td>
+
+        <td align="left">Date interview was posted</td>
+
+        <td align="left">integer</td>
+
+        <td align="left"><strong>date</strong> is in UNIX epoch time</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>categories</strong></td>
+
+        <td align="left">List of categories for the interview</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>credits</strong></td>
+
+        <td align="left">Photo credit for interview picture</td>
+
+        <td align="left">JSON object</td>
+
+        <td align="left">Credit is only listed when provided by subject</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/credits/<strong>name</strong></td>
+
+        <td align="left">Name of photographer</td>
+
+        <td align="left">string</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>contents</strong></td>
+
+        <td align="left">Interview contents, in Markdown format</td>
+
+        <td align="left">string</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>gear</strong></td>
+
+        <td align="left">List of hardware and software</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/gear/<strong>hardware</strong></td>
+
+        <td align="left">Hardware used</td>
+
+        <td align="left">JSON object</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/gear/<strong>software</strong></td>
+
+        <td align="left">Software used</td>
+
+        <td align="left">JSON object</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><br></p>
+
+  <h2 id="retrieve-a-list-of-all-categories">Retrieve a list of all categories</h2>
+
+  <p>Returns a basic list of all categories currently available</p>
+
+  <p><strong>Note</strong> - this will return a long list of items.</p>
+
+  <h3 id="endpoint-2">Endpoint</h3>
+
+  <p><code>/api/v1/categories</code></p>
+
+  <h3 id="method-and-url-2">Method and URL</h3>
+
+  <p><code>GET https://usesthis.com/api/v1/categories</code></p>
+
+  <h3 id="sample-request-2">Sample Request</h3>
+
+  <p><code>curl -X GET "https://usesthis.com/api/v1/categories/"</code></p>
+
+  <h3 id="sample-response-2">Sample Response</h3>
+  <pre class="sourceCode json">
+<code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">"categories"</span><span class="fu">:</span> <span class="ot">[</span>
+    <span class="st">"activist"</span><span class="ot">,</span>
+    <span class="st">"actor"</span><span class="ot">,</span>
+    <span class="st">"adventurer"</span><span class="ot">,</span>
+    <span class="st">"agriculture"</span><span class="ot">,</span>
+    <span class="st">"animal"</span><span class="ot">,</span>
+    <span class="st">"animator"</span><span class="ot">,</span>
+    <span class="st">"anthropologist"</span><span class="ot">,</span>
+    <span class="st">"architect"</span><span class="ot">,</span>
+    <span class="st">"artist"</span><span class="ot">,</span>
+    <span class="st">"astrologer"</span><span class="ot">,</span>
+    <span class="st">"output truncated..."</span>
+   <span class="ot">]</span>
+<span class="fu">}</span></code>
+</pre>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Element</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Type</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>categories</strong></td>
+
+        <td align="left">List of categories</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><br></p>
+
+  <h2 id="retrieve-a-list-of-all-interviews-in-a-category">Retrieve a list of all interviews in a category</h2>
+
+  <p>Returns a list of all interviews available in a specified category.</p>
+
+  <h3 id="endpoint-3">Endpoint</h3>
+
+  <p><code>/api/v1/categories/{slug}</code></p>
+
+  <p><strong>Note</strong> - a <strong><em>slug</em></strong> is a short label for a category that is used as part of a URL. See <strong>Retrieve a list of all categories</strong> to get a full list of available slugs.</p>
+
+  <h3 id="method-and-url-3">Method and URL</h3>
+
+  <p><code>GET https://usesthis.com/api/v1/categories/{slug}</code></p>
+
+  <h3 id="sample-request-3">Sample Request</h3>
+
+  <p><code>curl -X GET "https://usesthis.com/api/v1/categories/mac/"</code></p>
+
+  <h3 id="sample-response-3">Sample Response</h3>
+  <pre class="sourceCode json">
+<code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">"interviews"</span><span class="fu">:</span> <span class="ot">[</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"first.last"</span><span class="fu">,</span>
+      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Firstname Lastname"</span><span class="fu">,</span>
+      <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"http://usesthis.com/interviews/slug.name/"</span><span class="fu">,</span>
+      <span class="dt">"summary"</span><span class="fu">:</span> <span class="st">"Summary of interview subject"</span><span class="fu">,</span>
+      <span class="dt">"date"</span><span class="fu">:</span> <span class="dv">1410962400</span><span class="fu">,</span>
+      <span class="dt">"categories"</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="st">"category1"</span><span class="ot">,</span>
+        <span class="st">"category2"</span><span class="ot">,</span>
+        <span class="st">"category3"</span><span class="ot">,</span>
+        <span class="st">"category4"</span>
+      <span class="ot">]</span>
+    <span class="fu">}</span>
+  <span class="ot">]</span>
+<span class="fu">}</span></code>
+</pre>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Element</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Type</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>interviews</strong></td>
+
+        <td align="left">Basic interview information</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>slug</strong></td>
+
+        <td align="left">Page ID</td>
+
+        <td align="left">string</td>
+
+        <td align="left">In "first.last" name format</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>name</strong></td>
+
+        <td align="left">Full name</td>
+
+        <td align="left">string</td>
+
+        <td align="left">First and last name</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>url</strong></td>
+
+        <td align="left">Link to full interview</td>
+
+        <td align="left">string</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>summary</strong></td>
+
+        <td align="left">Summary of the interview</td>
+
+        <td align="left">string</td>
+
+        <td align="left"></td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">interviews/<strong>date</strong></td>
+
+        <td align="left">Date interview was posted</td>
+
+        <td align="left">integer</td>
+
+        <td align="left"><strong>date</strong> is in UNIX epoch time</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">interviews/<strong>categories</strong></td>
+
+        <td align="left">List of categories for the interview</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><br></p>
+  <hr>
+
+  <h2 id="gear-listings">Gear Listings</h2>
+
+  <h2 id="retrieve-a-list-of-all-gear-hardware-or-software">Retrieve a list of all gear (hardware or software)</h2>
+
+  <p>Returns a list of all gear currently available, either hardware or software.</p>
+
+  <p><strong>Note</strong> - these lists will be extremely long.</p>
+
+  <h3 id="endpoint-4">Endpoint</h3>
+
+  <p>For hardware:<br>
+  <code>/api/v1/hardware</code></p>
+
+  <p>For software:<br>
+  <code>/api/v1/software</code></p>
+
+  <h3 id="method-and-url-4">Method and URL</h3>
+
+  <p>For hardware:<br>
+  <code>GET https://usesthis.com/api/v1/hardware/</code></p>
+
+  <p>For software:<br>
+  <code>GET https://usesthis.com/api/v1/software/</code></p>
+
+  <h3 id="sample-request-4">Sample Request</h3>
+
+  <p>For hardware:<br>
+  <code>curl -X GET "https://usesthis.com/api/v1/hardware/"</code></p>
+
+  <p>For software:<br>
+  <code>curl -X GET "https://usesthis.com/api/v1/software/"</code></p>
+
+  <h3 id="sample-response-4">Sample Response</h3>
+
+  <p>(Same response format for either <code>hardware</code> or <code>software</code>)</p>
+  <pre class="sourceCode json">
+<code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">"gear"</span><span class="fu">:</span> <span class="ot">[</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"01v"</span><span class="fu">,</span>
+      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"01V"</span>
+    <span class="fu">}</span><span class="ot">,</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"055xprob"</span><span class="fu">,</span>
+      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"055XPROB"</span>
+    <span class="fu">}</span><span class="ot">,</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"1"</span><span class="fu">,</span>
+      <span class="dt">"name"</span><span class="fu">:</span> <span class="dv">1</span>
+    <span class="fu">}</span><span class="ot">,</span>
+  <span class="ot">]</span>
+<span class="fu">}</span></code>
+</pre>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Element</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Type</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>gear</strong></td>
+
+        <td align="left">List of gear</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">gear/<strong>slug</strong></td>
+
+        <td align="left">Page ID</td>
+
+        <td align="left">string</td>
+
+        <td align="left">Will be in "dashed-word-format" if more than one word</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">gear/<strong>name</strong></td>
+
+        <td align="left">Gear name</td>
+
+        <td align="left">string</td>
+
+        <td align="left">Will be a proper name</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><br></p>
+
+  <h2 id="retrieve-a-list-of-all-gear-hardware-or-software-for-a-category">Retrieve a list of all gear (hardware or software) for a category</h2>
+
+  <p>Returns a list of all interviews for a specific piece of hardware or software.</p>
+
+  <h3 id="endpoint-5">Endpoint</h3>
+
+  <p>For hardware:<br>
+  <code>/api/v1/hardware/{slug}</code></p>
+
+  <p>For software:<br>
+  <code>/api/v1/software/{slug}</code></p>
+
+  <p><strong>Note</strong> - a <strong><em>slug</em></strong> is a short label for an article that is used as part of a URL, usually derived from the title. See <strong>Retrieve a list of all gear (hardware or software)</strong> to get a full list of available slugs.</p>
+
+  <h3 id="method-and-url-5">Method and URL</h3>
+
+  <p>For hardware:<br>
+  <code>GET https://usesthis.com/api/v1/hardware/{slug}</code></p>
+
+  <p>For software:<br>
+  <code>GET https://usesthis.com/api/v1/software/{slug}</code></p>
+
+  <h3 id="sample-request-5">Sample Request</h3>
+
+  <p>For hardware:<br>
+  <code>curl -X GET "https://usesthis.com/api/v1/hardware/iphone/"</code></p>
+
+  <p>For software:<br>
+  <code>curl -X GET "https://usesthis.com/api/v1/software/ios"</code></p>
+
+  <h3 id="sample-response-5">Sample Response</h3>
+
+  <p>(Same response format for either <code>hardware</code> or <code>software</code>)</p>
+  <pre class="sourceCode json">
+<code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">"gear"</span><span class="fu">:</span> <span class="fu">{</span>
+    <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"ios"</span><span class="fu">,</span>
+    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"iOS"</span><span class="fu">,</span>
+    <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"A mobile operating system."</span><span class="fu">,</span>
+    <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"http://www.apple.com/ios/"</span><span class="fu">,</span>
+    <span class="dt">"interviews"</span><span class="fu">:</span> <span class="ot">[</span>
+      <span class="fu">{</span>
+        <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"rachel.hyman"</span><span class="fu">,</span>
+        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Rachel Hyman"</span>
+      <span class="fu">}</span>
+    <span class="ot">]</span>
+  <span class="fu">}</span>
+<span class="fu">}</span></code>
+</pre>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Element</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Type</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>gear</strong></td>
+
+        <td align="left">List of gear</td>
+
+        <td align="left">JSON object</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">gear/<strong>slug</strong></td>
+
+        <td align="left">Page ID</td>
+
+        <td align="left">string</td>
+
+        <td align="left">Will be in "dashed-word-format" if more than one word</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">gear/<strong>name</strong></td>
+
+        <td align="left">Gear name</td>
+
+        <td align="left">string</td>
+
+        <td align="left">Will be a proper name</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">gear/<strong>description</strong></td>
+
+        <td align="left">Short description</td>
+
+        <td align="left">string</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">gear/<strong>url</strong></td>
+
+        <td align="left">Vendor website</td>
+
+        <td align="left">string</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">gear/<strong>interviews</strong></td>
+
+        <td align="left">All related interviews</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">gear/interviews/<strong>slug</strong></td>
+
+        <td align="left">Page ID</td>
+
+        <td align="left">string</td>
+
+        <td align="left">In "first.last" name format</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">gear/interviews/<strong>name</strong></td>
+
+        <td align="left">Full name</td>
+
+        <td align="left">string</td>
+
+        <td align="left">First and last name</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><br></p>
+  <hr>
+
+  <h2 id="site-statistics">Site Statistics</h2>
+
+  <h2 id="retrieve-the-top-50-hardware-or-software-items-listed-can-also-specify-year">Retrieve the top 50 hardware or software items listed (can also specify year)</h2>
+
+  <p>Returns a list of the top 50 hardware or software items listed on the site, with counts for each item. The year can also be specified to show counts for that year.</p>
+
+  <h3 id="endpoint-6">Endpoint</h3>
+
+  <p>For hardware:<br>
+  <code>/api/v1/stats/hardware</code></p>
+
+  <p>For software:<br>
+  <code>/api/v1/stats/software</code></p>
+
+  <p><strong>To show the year:</strong></p>
+
+  <p>For hardware:<br>
+  <code>/api/v1/stats/hardware/YYYY/</code></p>
+
+  <p>For software:<br>
+  <code>/api/v1/stats/software/YYYY/</code></p>
+
+  <h3 id="method-and-url-6">Method and URL</h3>
+
+  <p>For hardware:<br>
+  <code>GET https://usesthis.com/api/v1/stats/hardware</code></p>
+
+  <p>For software:<br>
+  <code>GET https://usesthis.com/api/v1/stats/software</code></p>
+
+  <h3 id="sample-request-6">Sample Request</h3>
+
+  <p>For hardware:<br>
+  <code>curl -X GET https://usesthis.com/api/v1/stats/hardware/</code></p>
+
+  <p>For software:<br>
+  <code>curl -X GET https://usesthis.com/api/v1/stats/software/</code></p>
+
+  <h3 id="sample-response-6">Sample Response</h3>
+
+  <p>(Same response format for either <code>hardware</code> or <code>software</code>)</p>
+  <pre class="sourceCode json">
+<code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">"gear"</span><span class="fu">:</span> <span class="ot">[</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"photoshop"</span><span class="fu">,</span>
+      <span class="dt">"count"</span><span class="fu">:</span> <span class="dv">285</span>
+    <span class="fu">}</span><span class="ot">,</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"chrome"</span><span class="fu">,</span>
+      <span class="dt">"count"</span><span class="fu">:</span> <span class="dv">209</span>
+    <span class="fu">}</span><span class="ot">,</span>
+    <span class="fu">{</span>
+      <span class="dt">"slug"</span><span class="fu">:</span> <span class="st">"dropbox"</span><span class="fu">,</span>
+      <span class="dt">"count"</span><span class="fu">:</span> <span class="dv">195</span>
+    <span class="fu">}</span>
+  <span class="ot">]</span>
+<span class="fu">}</span></code>
+</pre>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Element</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Type</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>gear</strong></td>
+
+        <td align="left">List of gear</td>
+
+        <td align="left">JSON array</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left">gear/<strong>slug</strong></td>
+
+        <td align="left">Page ID</td>
+
+        <td align="left">string</td>
+
+        <td align="left">Will be in "dashed-word-format" if more than one word</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left">gear/<strong>count</strong></td>
+
+        <td align="left">Number of times gear is mentioned</td>
+
+        <td align="left">integer</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><br></p>
+
+  <h2 id="retrieve-site-stats-for-number-of-interviews-hardware-and-software-item-counts">Retrieve site stats for number of interviews, hardware and software item counts</h2>
+
+  <p>Returns a count of the current number of interviews posted, and the number of hardware and software items counted.</p>
+
+  <p><strong>Note</strong> - these numbers will change as the site is updated.</p>
+
+  <h3 id="endpoint-7">Endpoint</h3>
+
+  <p><code>/api/v1/stats</code></p>
+
+  <h3 id="method-and-url-7">Method and URL</h3>
+
+  <p><code>GET https://usesthis.com/api/v1/stats/</code></p>
+
+  <h3 id="sample-request-7">Sample Request</h3>
+
+  <p><code>curl -X GET https://usesthis.com/api/v1/stats/</code></p>
+
+  <h3 id="sample-response-7">Sample Response</h3>
+  <pre class="sourceCode json">
+<code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">"interviews"</span><span class="fu">:</span> <span class="dv">708</span><span class="fu">,</span>
+  <span class="dt">"hardware"</span><span class="fu">:</span> <span class="dv">2583</span><span class="fu">,</span>
+  <span class="dt">"software"</span><span class="fu">:</span> <span class="dv">3029</span>
+<span class="fu">}</span></code>
+</pre>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Element</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Type</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>interviews</strong></td>
+
+        <td align="left">Current number of interviews</td>
+
+        <td align="left">integer</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left"><strong>hardware</strong></td>
+
+        <td align="left">Current number of hardware items counted</td>
+
+        <td align="left">integer</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left"><strong>software</strong></td>
+
+        <td align="left">Current number of software items counted</td>
+
+        <td align="left">integer</td>
+
+        <td align="left">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+
+  <h2 id="status-codes-and-errors">Status Codes and Errors</h2>
+
+  <table>
+    <thead>
+      <tr class="header">
+        <th align="left">Code</th>
+
+        <th align="left">Description</th>
+
+        <th align="left">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="odd">
+        <td align="left"><strong>200</strong></td>
+
+        <td align="left">OK</td>
+
+        <td align="left">Success</td>
+      </tr>
+
+      <tr class="even">
+        <td align="left"><strong>301</strong></td>
+
+        <td align="left">Moved Permanently</td>
+
+        <td align="left">Verify trailing slash "/" on request</td>
+      </tr>
+
+      <tr class="odd">
+        <td align="left"><strong>404</strong></td>
+
+        <td align="left">Not found</td>
+
+        <td align="left">API endpoint not found</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
